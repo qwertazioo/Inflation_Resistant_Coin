@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orange Background</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(45deg, #ff9a38, #ff6b37);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+
+            padding-right: 400px; /* Image input will be on the left */
+        }
+
+        .image-container {
+            width: 500px;
+            height: 500px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-right: 40px;
+            background-color: #fff;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            color: black;
+        }
+
+        .content {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background-color: #ff6b37;
+            -webkit-background-clip: text;            color: white;
+        }
+
+        p {
+            line-height: 1.6;
+            max-width: 800px;
+            padding-left: 40px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="image-container">
+            <!-- Replace this with your actual image -->
+            <img src="shoshin.jpeg" alt="Example Image">
+        </div>
+        <div class="content">
+            <h1>Inflation Resistant Coin</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
+</body>
+</html>
