@@ -90,20 +90,14 @@
     </style>
 </head>
 <body>
+     <script src="https://cdn.jsdelivr.net/npm/@wharfkit/session-kit@latest/dist/session-kit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@wharfkit/transact-plugin-resource-provider@latest/dist/transact-plugin-resource-provider.min.js"></script>
     <script type="module">import { WebContainer } from "https://cdn.jsdelivr.net/npm/@webcontainer/api@1.5.1-internal.9/+esm"
 import { files } from './files';
 import wharfkitsession from 'https://cdn.jsdelivr.net/npm/@wharfkit/session@1.4.0/+esm'
-           <script src="https://cdn.jsdelivr.net/npm/@wharfkit/session-kit@latest/dist/session-kit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@wharfkit/transact-plugin-resource-provider@latest/dist/transact-plugin-resource-provider.min.js"></script>
+          
     
-    <!-- Custom Styles -->
-   
-</head>
-<body>
-    
-
-    <script>
-        // Initialize SessionKit
+ialize SessionKit
         const sessionKit = new SessionKit({
             chainId: 'your_chain_id',
             nodeUrl: 'your_node_url'
