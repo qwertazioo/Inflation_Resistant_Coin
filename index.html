@@ -63,7 +63,152 @@
 <body>
     <script type="module">import { WebContainer } from "https://cdn.jsdelivr.net/npm/@webcontainer/api@1.5.1-internal.9/+esm"
 import { files } from './files';
+import wharfkitsession from 'https://cdn.jsdelivr.net/npm/@wharfkit/session@1.4.0/+esm'
+           <script src="https://cdn.jsdelivr.net/npm/@wharfkit/session-kit@latest/dist/session-kit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@wharfkit/transact-plugin-resource-provider@latest/dist/transact-plugin-resource-provider.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        .wallet-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .wallet-button {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .wallet-button:hover {
+            background-color: #0056b3;
+        }
+        .status {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="wallet-container">
+        <h2>EOS Wallet Integration</h2>
+        
+        <!-- Connect Wallet Button -->
+        <button id="connectWallet" class="wallet-button">
+            <i class="fas fa-wallet"></i> Connect MyCloudWallet
+        </button>
+        
+        <!-- Transfer RAM Button -->
+        <button id="transferRAM" class="wallet-button" style="display: none;">
+            <i class="fas fa-exchange-alt"></i> Transfer RAM
+        </button>
+        
+        <!-- Status Display -->
+        <div id="status" class="status"></div>
+    </div>
 
+    <script>
+        // Initialize SessionKit
+        const sessionKit = new SessionKit({
+            chainId: 'your_chain_id',
+            nodeUrl: 'your_node_url'
+        });
+
+        // DOM Elements
+        const connectWalletBtn = document.getElementById('connectWallet');
+        const transferRAMBtn = document.getElementById('transferRAM');
+        const statusDiv = document.getElementById('status');
+
+        // Connect Wallet Handler
+        connectWalletBtn.addEventListener('click', async () => {
+            try {
+                // Initialize wallet connection
+                const { account } = await sessionKit.connect({
+                    walletName: 'mycloudwallet',
+                    shouldLogin: true
+                });
+                
+                // Update UI
+                connectWalletBtn.style.display = 'none';
+                transferRAMBtn.style.display = 'block';
+                updateStatus('success', `Connected as ${account.name}`);
+                
+                // Set up transfer handler
+                transferRAMBtn.addEventListener('click', () => handleRAMTransfer(account.name));
+            } catch (error) {
+                updateStatus('error', `Connection failed: ${error.message}`);
+            }
+        });
+
+        // RAM Transfer Handler
+        async function handleRAMTransfer(fromAccount) {
+            try {
+                // Example RAM transfer parameters
+                const toAccount = 'recipient_account';
+                const bytes = 1024; // Amount of RAM to transfer
+                const memo = 'RAM transfer from MyCloudWallet';
+
+                // Create and send transaction
+                const action = {
+                    account: 'eosio',
+                    name: 'ramtransfer',
+                    authorization: [{
+                        actor: fromAccount,
+                        permission: 'active'
+                    }],
+                    data: {
+                        from: fromAccount,
+                        to: toAccount,
+                        bytes,
+                        memo
+                    }
+                };
+
+                const result = await sessionKit.transact({
+                    actions: [action]
+                });
+
+                updateStatus('success', 'RAM transferred successfully');
+            } catch (error) {
+                updateStatus('error', `Transfer failed: ${error.message}`);
+            }
+        }
+const sessionKit = new SessionKit({
+  chainId: 'your_chain_id',
+  nodeUrl: 'your_node_url'
+})
+
+async function transferRAM(from, to, bytes, memo) {
+  const action = {
+    account: 'eosio',
+    name: 'ramtransfer',
+    authorization: [{
+      actor: from,
+      permission: 'active'
+    }],
+    data: {
+      from,
+      to,
+      bytes,
+      memo
+    }
+  }
+
+  const result = await sessionKit.transact({
+    actions: [action]
+  })
+  return result
+}
 /** @type {import('@webcontainer/api').WebContainer}  */
 let webcontainerInstance;
 
