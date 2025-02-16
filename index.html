@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orange Background</title>
     <style>
+         
+        .wallet-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .wallet-button {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .wallet-button:hover {
+            background-color: #0056b3;
+        }
+        .status {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
         body {
             margin: 0;
             padding: 20px;
@@ -68,54 +97,10 @@ import wharfkitsession from 'https://cdn.jsdelivr.net/npm/@wharfkit/session@1.4.
     <script src="https://cdn.jsdelivr.net/npm/@wharfkit/transact-plugin-resource-provider@latest/dist/transact-plugin-resource-provider.min.js"></script>
     
     <!-- Custom Styles -->
-    <style>
-        .wallet-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .wallet-button {
-            width: 100%;
-            padding: 1rem;
-            margin: 0.5rem 0;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .wallet-button:hover {
-            background-color: #0056b3;
-        }
-        .status {
-            margin-top: 1rem;
-            padding: 0.5rem;
-            border-radius: 4px;
-        }
-        .success { background-color: #d4edda; color: #155724; }
-        .error { background-color: #f8d7da; color: #721c24; }
-    </style>
+   
 </head>
 <body>
-    <div class="wallet-container">
-        <h2>EOS Wallet Integration</h2>
-        
-        <!-- Connect Wallet Button -->
-        <button id="connectWallet" class="wallet-button">
-            <i class="fas fa-wallet"></i> Connect MyCloudWallet
-        </button>
-        
-        <!-- Transfer RAM Button -->
-        <button id="transferRAM" class="wallet-button" style="display: none;">
-            <i class="fas fa-exchange-alt"></i> Transfer RAM
-        </button>
-        
-        <!-- Status Display -->
-        <div id="status" class="status"></div>
-    </div>
+    
 
     <script>
         // Initialize SessionKit
@@ -248,7 +233,22 @@ async function startDevServer() {
 }
 </script>
     <div class="container">
+        <div class="wallet-container">
+        <h2>EOS Wallet Integration</h2>
         
+        <!-- Connect Wallet Button -->
+        <button id="connectWallet" class="wallet-button">
+            <i class="fas fa-wallet"></i> Connect MyCloudWallet
+        </button>
+        
+        <!-- Transfer RAM Button -->
+        <button id="transferRAM" class="wallet-button" style="display: none;">
+            <i class="fas fa-exchange-alt"></i> Transfer RAM
+        </button>
+        
+        <!-- Status Display -->
+        <div id="status" class="status"></div>
+    </div>
         <div class="image-container">
             <!-- Replace this with your actual image -->
             <img src="shoshin.jpeg" alt="Example Image">
